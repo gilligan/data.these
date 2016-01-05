@@ -1,3 +1,5 @@
+'use strict';
+
 var expect = require('chai').expect;
 var Theese = require('../lib/these');
 
@@ -41,7 +43,7 @@ describe('These', function () {
         });
     });
     describe('Functor', function () {
-        var inc = function(x) { return x + 1 };
+        var inc = function (x) { return x + 1; };
 
         it('map', function () {
             expect(Theese.This(1).map(inc).get()).to.equal(2);
@@ -53,13 +55,13 @@ describe('These', function () {
         });
     });
     describe('Apply', function () {
-        var inc = function(x) { return x + 1 };
+        var inc = function (x) { return x + 1; };
         var nop = function () {};
 
         it('ap', function () {
-            expect(Theese.This(inc).ap([1, 2])).to.deep.equal([2, 3]);
-            expect(Theese.That(inc).ap([1, 2])).to.deep.equal([2, 3]);
-            expect(Theese.These(nop, inc).ap([1, 2]));
+            expect(Theese.This(inc).ap([ 1, 2 ])).to.deep.equal([ 2, 3 ]);
+            expect(Theese.That(inc).ap([ 1, 2 ])).to.deep.equal([ 2, 3 ]);
+            expect(Theese.These(nop, inc).ap([ 1, 2 ]));
         });
     });
     describe('Applicative', function () {
@@ -79,8 +81,8 @@ describe('These', function () {
     });
 
     describe('utilities', function () {
-        var inc = function (x) { return x + 1 };
-        var dec = function (x) { return x - 1 };
+        var inc = function (x) { return x + 1; };
+        var dec = function (x) { return x - 1; };
         var add = function (x, y) { return x + y; };
 
         it('these', function () {
@@ -90,9 +92,9 @@ describe('These', function () {
         });
 
         it('fromThese', function () {
-            expect(Theese.This(666).fromThese(1, 2)).to.deep.equal([666, 2]);
-            expect(Theese.That(666).fromThese(1, 2)).to.deep.equal([1, 666]);
-            expect(Theese.These(42, 666).fromThese(1, 2)).to.deep.equal([42, 666]);
+            expect(Theese.This(666).fromThese(1, 2)).to.deep.equal([ 666, 2 ]);
+            expect(Theese.That(666).fromThese(1, 2)).to.deep.equal([ 1, 666 ]);
+            expect(Theese.These(42, 666).fromThese(1, 2)).to.deep.equal([ 42, 666 ]);
         });
 
         it('merge', function () {
@@ -105,7 +107,7 @@ describe('These', function () {
 
         it('mapThese', function () {
             var f = function (x) { return x + 1; };
-            var g = function (x) { return x -1 };
+            var g = function (x) { return x - 1; };
 
             expect(Theese.This(1).mapThese(f, g).get()).to.equal(2);
             expect(Theese.That(1).mapThese(f, g).get()).to.equal(0);
