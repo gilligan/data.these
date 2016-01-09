@@ -98,8 +98,11 @@ These.These(1, 2).mapThese(inc, dec) // => These { 2, 1 }
 ```
 The `mapThese` acts as a bi-functor accepting two functions, which are applied accordingly.
 
+----
+
 [
   ![](https://raw.github.com/pufuwozu/fantasy-land/master/logo.png)
 ](https://github.com/pufuwozu/fantasy-land)
 
-fantasy land compatible
+fantasy land compatible.
+validated using [fantasy-check](https://github.com/fantasyland/fantasy-check)
