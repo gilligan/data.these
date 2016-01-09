@@ -1,6 +1,9 @@
 
 ## data.these
 
+[![Build Status](https://travis-ci.org/gilligan/data.these.svg?branch=master)](https://travis-ci.org/gilligan/data.these)
+[![Dependencies](http://img.shields.io/david/gilligan/data.these.svg?style=flat)](https://david-dm.org/gilligan/data.these)
+
 This is a javascript adaptation of the haskell package [these](https://github.com/isomorphism/these) which provides
 a data structure containing either a value `a` or a value `b` or both, values `a` and `b` :
 ```haskell
@@ -94,3 +97,9 @@ These.That(2).mapThese(inc, dec) // => That { 1 }
 These.These(1, 2).mapThese(inc, dec) // => These { 2, 1 }
 ```
 The `mapThese` acts as a bi-functor accepting two functions, which are applied accordingly.
+
+[
+  ![](https://raw.github.com/pufuwozu/fantasy-land/master/logo.png)
+](https://github.com/pufuwozu/fantasy-land)
+
+fantasy land compatible
