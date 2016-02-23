@@ -1,6 +1,6 @@
 {
   "name": "data.these",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "js implementation of data.these",
   "main": "lib/these.js",
   "scripts": {
@@ -14,6 +14,10 @@
     "these",
     "fantasy-land"
   ],
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/gilligan/data.these.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.4.1",
