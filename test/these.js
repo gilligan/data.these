@@ -2,6 +2,7 @@
 
 var expect = require('chai').expect;
 var Theese = require('../lib/these');
+var fl = require('fantasy-land');
 
 describe('These', function () {
     describe('constructors', function () {
@@ -37,18 +38,18 @@ describe('These', function () {
     });
     describe('Setoid', function () {
         it('equals', function () {
-            expect(Theese.This(1).equals(Theese.This(1))).to.equal(true);
-            expect(Theese.That(1).equals(Theese.That(1))).to.equal(true);
-            expect(Theese.These(1, 2).equals(Theese.These(1, 2))).to.equal(true);
+            expect(Theese.This(1)[fl.equals](Theese.This(1))).to.equal(true);
+            expect(Theese.That(1)[fl.equals](Theese.That(1))).to.equal(true);
+            expect(Theese.These(1, 2)[fl.equals](Theese.These(1, 2))).to.equal(true);
         });
     });
     describe('Functor', function () {
         var inc = function (x) { return x + 1; };
 
         it('map', function () {
-            expect(Theese.This(1).map(inc).get()).to.equal(2);
-            expect(Theese.That(1).map(inc).get()).to.equal(2);
-            expect(Theese.These(1, 2).map(inc).get()).to.deep.equal({
+            expect(Theese.This(1)[fl.map](inc).get()).to.equal(2);
+            expect(Theese.That(1)[fl.map](inc).get()).to.equal(2);
+            expect(Theese.These(1, 2)[fl.map](inc).get()).to.deep.equal({
                 _this: 1,
                 _that: 3
             });
@@ -59,24 +60,24 @@ describe('These', function () {
         var nop = function () {};
 
         it('ap', function () {
-            expect(Theese.This(inc).ap([ 1, 2 ])).to.deep.equal([ 2, 3 ]);
-            expect(Theese.That(inc).ap([ 1, 2 ])).to.deep.equal([ 2, 3 ]);
-            expect(Theese.These(nop, inc).ap([ 1, 2 ]));
+            expect(Theese.This(inc)[fl.ap]([ 1, 2 ])).to.deep.equal([ 2, 3 ]);
+            expect(Theese.That(inc)[fl.ap]([ 1, 2 ])).to.deep.equal([ 2, 3 ]);
+            expect(Theese.These(nop, inc)[fl.ap]([ 1, 2 ]));
         });
     });
     describe('Applicative', function () {
         it('of', function () {
-            expect(Theese.of(1)).to.be.an.instanceof(Theese);
-            expect(Theese.of(1).isThat).to.equal(true);
+            expect(Theese[fl.of](1)).to.be.an.instanceof(Theese);
+            expect(Theese[fl.of](1).isThat).to.equal(true);
         });
     });
     describe('Foldable', function () {
         var add = function (x, y) { return x + y; };
 
         it('reduce', function () {
-            expect(Theese.This(1).reduce(add, 0)).to.equal(0);
-            expect(Theese.That(1).reduce(add, 1)).to.equal(2);
-            expect(Theese.These(0, 1).reduce(add, 1)).to.equal(2);
+            expect(Theese.This(1)[fl.reduce](add, 0)).to.equal(0);
+            expect(Theese.That(1)[fl.reduce](add, 1)).to.equal(2);
+            expect(Theese.These(0, 1)[fl.reduce](add, 1)).to.equal(2);
         });
     });
 
